@@ -1,0 +1,27 @@
+create database my_data_base;
+use my_data_base;
+create table  user_datas(
+	ID int primary key not null unique auto_increment,
+    F_name varchar(20) not null,
+    L_name varchar(20) not null,
+    Username varchar(20) not null unique,
+    Passkey varchar(20) not null
+);
+
+
+use my_data_base;
+create table  user_book(
+	ID int primary key not null unique auto_increment,
+    Specialization varchar(20) not null,
+    Doctor_Name  varchar(20) not null,
+    Consultant_Fee varchar(20) not null,
+    appoin_Date varchar(20) not null,
+    appoin_Time varchar(20) not null,
+    Customer_ID int,
+    foreign key (Customer_ID) references user_datas(ID)
+);
+Alter table user_book
+ADD UNIQUE INDEX uniq_specialization_date_time (Specialization, appoin_Date, appoin_Time);
+
+
+
